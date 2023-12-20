@@ -1,0 +1,287 @@
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="/static/index.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Groupie Tracker</title>
+
+</head>
+
+<body>
+  <div class="sidebar">
+    <ul class="sidebar-nav">
+      <li>
+        <h1 class="groupie"><a href="/">Groupie Tracker</a></h1>
+      </li>
+      <form class="from-filter" method="GET">
+        <div class="container">
+        </div>
+        <div class="Filter">
+          <div class="searchBox">
+            <input type="text" class="input-search" id="searchInput" name="searchInput" placeholder="Search artist....."
+              value="{{ .SearchInput }}" autocomplete="off">
+          </div>
+          <div class="FilterCareerStartDate">
+            <div>
+              Career Start Date
+            </div>
+            <div>
+              <label for="fromCareerStartDate">From</label>
+              <input type="range" id="fromCareerStartDate" name="fromCareerStartDate" min="1900" max="2030"
+                value="{{ .FromCareerStartDate }}">
+              <input type="text" id="fromCareerStartDateText" name="fromCareerStartDateText"
+                value="{{ .FromCareerStartDate }}">
+              <br>
+              <label for="toCareerStartDate">To</label>
+              <input type="range" id="toCareerStartDate" name="toCareerStartDate" min="1900" max="2030"
+                value="{{ .ToCareerStartDate }}">
+              <input type="text" id="toCareerStartDateText" name="toCareerStartDateText"
+                value="{{ .ToCareerStartDate }}">
+            </div>
+          </div>
+          <div class="FilterFirstAlbumDate">
+            <div>
+              First Album Date
+            </div>
+            <div>
+              <label for="fromFirstAlbumDate">From</label>
+              <input type="range" id="fromFirstAlbumDate" name="fromFirstAlbumDate" min="1900" max="2030"
+                value="{{ .FromFirstAlbumDate }}">
+              <input type="text" id="fromFirstAlbumDateText" name="fromFirstAlbumDateText"
+                value="{{ .FromFirstAlbumDate }}">
+              <br>
+              <label for="toFirstAlbumDate">To</label>
+              <input type="range" id="toFirstAlbumDate" name="toFirstAlbumDate" min="1900" max="2030"
+                value="{{ .ToFirstAlbumDate }}">
+              <input type="text" id="toFirstAlbumDateText" name="toFirstAlbumDateText" value="{{ .ToFirstAlbumDate }}">
+            </div>
+          </div>
+          <script>
+            // Function to update the text inputs when the range sliders change
+            function updateTextInput(sliderId, inputId) {
+              const slider = document.getElementById(sliderId);
+              const input = document.getElementById(inputId);
+              input.value = slider.value;
+            }
+
+            // Add event listeners to update text inputs when sliders change
+            document.getElementById("fromCareerStartDate").addEventListener("input", function () {
+              updateTextInput("fromCareerStartDate", "fromCareerStartDateText");
+            });
+            document.getElementById("toCareerStartDate").addEventListener("input", function () {
+              updateTextInput("toCareerStartDate", "toCareerStartDateText");
+            });
+            document.getElementById("fromFirstAlbumDate").addEventListener("input", function () {
+              updateTextInput("fromFirstAlbumDate", "fromFirstAlbumDateText");
+            });
+            document.getElementById("toFirstAlbumDate").addEventListener("input", function () {
+              updateTextInput("toFirstAlbumDate", "toFirstAlbumDateText");
+            });
+
+            // Function to update the slider values when the text inputs change
+            function updateSlider(sliderId, inputId) {
+              const slider = document.getElementById(sliderId);
+              const input = document.getElementById(inputId);
+              slider.value = input.value;
+            }
+
+            // Add event listeners to update sliders when text inputs change
+            document.getElementById("fromCareerStartDateText").addEventListener("input", function () {
+              updateSlider("fromCareerStartDate", "fromCareerStartDateText");
+            });
+            document.getElementById("toCareerStartDateText").addEventListener("input", function () {
+              updateSlider("toCareerStartDate", "toCareerStartDateText");
+            });
+            document.getElementById("fromFirstAlbumDateText").addEventListener("input", function () {
+              updateSlider("fromFirstAlbumDate", "fromFirstAlbumDateText");
+            });
+            document.getElementById("toFirstAlbumDateText").addEventListener("input", function () {
+              updateSlider("toFirstAlbumDate", "toFirstAlbumDateText");
+            });
+          </script>
+
+          <div class="FilterLocation">
+            <div>
+              Select Location
+            </div>
+            <select id="location" name="location">
+              <option value="">location</option>
+              {{ range .Places }}
+              <option value="{{ . }}" {{if eq . $.Location}} selected {{ end }}>{{ . }}</option>
+              {{ end }}
+            </select>
+          </div>
+          <div class="FilterNumberOfMember">
+            <div>
+              Number Of member
+            </div>
+            <div>
+              <label>1</label><input type="checkbox" id="1member" name="1member" {{if .Member1}} checked {{ end }}>
+            </div>
+            <div>
+              <label>2</label><input type="checkbox" id="2member" name="2member" {{if .Member2}} checked {{ end }}>
+            </div>
+            <div>
+              <label>3</label><input type="checkbox" id="3member" name="3member" {{if .Member3}} checked {{ end }}>
+            </div>
+            <div>
+              <label>4</label><input type="checkbox" id="4member" name="4member" {{if .Member4}} checked {{ end }}>
+            </div>
+            <div>
+              <label>5</label><input type="checkbox" id="5member" name="5member" {{if .Member5}} checked {{ end }}>
+            </div>
+            <div>
+              <label>6</label><input type="checkbox" id="6member" name="6member" {{if .Member6}} checked {{ end }}>
+            </div>
+            <div>
+              <label>7</label><input type="checkbox" id="7member" name="7member" {{if .Member7}} checked {{ end }}>
+            </div>
+            <div>
+              <label>8</label><input type="checkbox" id="8member" name="8member" {{if .Member8}} checked {{ end }}>
+            </div>
+          </div>
+          <div class="SearchButton">
+            <button>search</button>
+          </div>
+        </div>
+
+
+  </div>
+  </form>
+  </ul>
+  </div>
+  <div class="main-content">
+    <form class="from-content" method="GET">
+      <div id="searchResults">
+        {{ range .Group }}
+        <div class="artist">
+          <a href="/artist/{{ .Id }}">
+            <!-- <img class="artist-imge" src="{{ .Image }}"><br>
+            <span class="artist-name">{{ .Name }}</span> -->
+            <div class="artist-image-container">
+              <img class="artist-image" src="{{ .Image }}" alt="{{ .Name }}">
+              <span class="artist-name">{{ .Name }}</span>
+            </div>
+          </a>
+        </div>
+        {{ end }}
+      </div>
+    </form>
+  </div>
+  <script>
+    var suggestions = {{ .Suggestions }};
+    autocomplete(document.getElementById("searchInput"), suggestions);
+    function autocomplete(inp, arr) {
+      /*the autocomplete function takes two arguments,
+      the text field element and an array of possible autocompleted values:*/
+      var currentFocus;
+      /*execute a function when someone writes in the text field:*/
+      inp.addEventListener("input", function (e) {
+        var a, b, i, val = this.value;
+        /*close any already open lists of autocompleted values*/
+        closeAllLists();
+        if (!val) { return false; }
+        currentFocus = -1;
+        /*create a DIV element that will contain the items (values):*/
+        a = document.createElement("DIV");
+        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("class", "autocomplete-items");
+        /*append the DIV element as a child of the autocomplete container:*/
+        this.parentNode.appendChild(a);
+        var counter = 0;
+        /*for each item in the array...*/
+        for (i = 0; i < arr.length; i++) {
+          /*check if the item starts with the same letters as the text field value:*/
+          // if (arr[i].toUpperCase().includes(val.toUpperCase())) {
+          if (arr[i].toUpperCase().match(new RegExp("(^|\\s)" + val.toUpperCase()))||(arr[i].match(new RegExp(/^\d{2}-\d{2}-\d{4}$/))&&arr[i].indexOf(val)!= -1) ) {
+            counter++;
+            /* create a DIV element for each matching element: */
+            b = document.createElement("DIV");
+            b.setAttribute("class", "autocomplete-item");
+            /* find the index of the match for highlighting: */
+            var startIndex = arr[i].toUpperCase().indexOf(val.toUpperCase());
+            var endIndex = startIndex + val.length;
+            /* make the matching letters bold: */
+            b.innerHTML = arr[i].substr(0, startIndex) + "<strong>" + arr[i].substr(startIndex, val.length) + "</strong>" + arr[i].substr(endIndex);
+            /* insert an input field that will hold the current array item's value: */
+            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+            /* execute a function when someone clicks on the item value (DIV element): */
+            b.addEventListener("click", function (e) {
+              /* insert the value for the autocomplete text field: */
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /* close the list of autocompleted values,
+              (or any other open lists of autocompleted values: */
+              closeAllLists();
+            });
+            a.appendChild(b);
+            if (counter == 5) {
+              i = arr.length;
+            }
+          }
+        }
+      });
+      /*execute a function presses a key on the keyboard:*/
+      inp.addEventListener("keydown", function (e) {
+        var x = document.getElementById(this.id + "autocomplete-list");
+        if (x) x = x.getElementsByTagName("div");
+        if (e.keyCode == 40) {
+          /*If the arrow DOWN key is pressed,
+          increase the currentFocus variable:*/
+          currentFocus++;
+          /*and and make the current item more visible:*/
+          addActive(x);
+        } else if (e.keyCode == 38) { //up
+          /*If the arrow UP key is pressed,
+          decrease the currentFocus variable:*/
+          currentFocus--;
+          /*and and make the current item more visible:*/
+          addActive(x);
+        } else if (e.keyCode == 13) {
+          /*If the ENTER key is pressed, prevent the form from being submitted,*/
+          e.preventDefault();
+          if (currentFocus > -1) {
+            /*and simulate a click on the "active" item:*/
+            if (x) x[currentFocus].click();
+          }
+        }
+      });
+      function addActive(x) {
+        /*a function to classify an item as "active":*/
+        if (!x) return false;
+        /*start by removing the "active" class on all items:*/
+        removeActive(x);
+        if (currentFocus >= x.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = (x.length - 1);
+        /*add class "autocomplete-active":*/
+        x[currentFocus].classList.add("autocomplete-active");
+      }
+      function removeActive(x) {
+        /*a function to remove the "active" class from all autocomplete items:*/
+        for (var i = 0; i < x.length; i++) {
+          x[i].classList.remove("autocomplete-active");
+        }
+      }
+      function closeAllLists(elmnt) {
+        /*close all autocomplete lists in the document,
+        except the one passed as an argument:*/
+        var x = document.getElementsByClassName("autocomplete-items");
+        for (var i = 0; i < x.length; i++) {
+          if (elmnt != x[i] && elmnt != inp) {
+            x[i].parentNode.removeChild(x[i]);
+          }
+        }
+      }
+      /*execute a function when someone clicks in the document:*/
+      document.addEventListener("click", function (e) {
+        closeAllLists(e.target);
+      });
+    }
+
+    // Function to handle keydown event in the search input
+    document.getElementById('searchInput').addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        // Trigger the form submission
+        document.querySelector('.from-filter').submit();
+      }
+    });
+  </script>
+</body>

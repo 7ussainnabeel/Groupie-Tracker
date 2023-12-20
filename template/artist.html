@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/static/artist.css">
+  <title>artist's page</title>
+</head>
+
+<body>
+ 
+  <a class="home" href="/">Groupie Tracker</a>
+  <div class="container">
+    <div class="main">
+      <h1>{{.Main.Name}}</h1>
+      <div class="logo">
+        <div class="image">
+          <img src="{{.Main.Image}}" alt="artist's image" width="80%">
+        </div>
+      </div>
+      <div class="bio">
+        <p class="bio-content">Created: <a>{{.Main.CreationDate}}</a></p>
+        <p class="bio-content">First album released: <a>{{.Main.FirstAlbum}}</a></p> 
+        <!-- <ul class="members">
+          <p class="bio-content">Members:</p>
+          {{range .Main.Members}}
+          <li class="member">{{.}}</li>
+          {{end}}
+        </ul> -->
+        <ul class="members">
+          <p class="bio-content">Members:
+            {{range $index, $member := .Main.Members}}
+              {{if $index}}, {{end}}<a>{{.}}</a>
+            {{end}}
+          </p>
+        </ul>        
+      </div>
+    </div>
+    <div class="Concerts">
+      <div class="tb">
+        <table class="tab">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Date of concert</th>
+            </tr>
+          </thead>
+          {{range $key, $value := .Concerts}}
+          <tbody>
+            <tr>
+              <td>{{$key}}</td>
+              <td>
+                {{range $value}}
+                <p class="date">{{.}}</p>
+                {{end}}
+              </td>
+
+            </tr>
+          </tbody>
+          {{end}}
+        </table>
+        <div id="googleMap" style="width:100%;height:400px;"></div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  function myMap() {
+    var mainMap = new google.maps.Map(document.getElementById("googleMap"), {
+      center: new google.maps.LatLng(0, 0),
+      zoom: 1,
+    });
+    {{range $key, $value := .Concerts}}
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: "{{ $key }}" }, function (results, status) {
+      if (status === 'OK') {
+        var myLatLng = results[0].geometry.location;
+
+        // var map = new google.maps.Map(document.getElementById("googleMap{{$key}}"), {
+        //   center: myLatLng,
+        //   zoom: 8,
+        // });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: "'{{$key}}'",
+        });
+        var marker2 = new google.maps.Marker({
+          position: myLatLng,
+          map: mainMap,
+          title: '{{$key}} {{$value}}',
+        });
+
+      } else {
+        var mapProp = {
+          center: new google.maps.LatLng(51.508742, -0.120850),
+          zoom: 8,
+        };
+
+        var map = new google.maps.Map(document.getElementById("googleMap{{$key}}"), mapProp);
+
+      }
+
+    });
+    {{ end }}
+  }
+</script>
+
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_79pmmv_C3K9YAYF5loywRcHiDRF7kRo&callback=myMap"></script>
+</html>

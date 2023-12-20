@@ -1,0 +1,123 @@
+/* Reset some default browser styles */
+body, h1, p, ul, li, table {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a background color for the body */
+body {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 20px;
+  margin-left: 20px;
+  background-color: #F1FAEE;
+  font-family: 'Montserrat', sans-serif;;
+}
+/* Style the container */
+.container {
+  max-width: 400px;
+  margin: -0 auto;
+  /*padding: 20px;*/
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  text-align:center;
+  max-width: 650px;
+  padding: 3px 3px 3px 3px;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+
+/* Style the header */
+h1 {
+  font-size: 40px;
+  font-style;color:#24241a;
+  margin-bottom: 10px;
+  text-decoration-line: underline;
+  text-decoration-color: black;
+}
+
+/* Style the bio section */
+.bio {
+  margin-bottom: 20px;
+  text-align:center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 180px;
+  margin-left: 180px;
+}
+
+/* Style the member list */
+.members {
+  list-style-type: none;
+  
+}
+
+.member {
+  margin-bottom: 5px;
+}
+
+/* Style the logo image */
+.logo img {
+  max-width: 35%;
+  height: auto;
+  border-radius:10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+/* Style the concerts table */
+.tab {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  /* padding: 10px; */
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  /* border-color: black; */
+}
+
+th {
+  background-color: #d5d5d5;
+}
+
+/* Style the concert date */
+.date {
+  /* font-weight: bold; */
+}
+
+.bio-content a {
+  font-weight: normal;
+}
+
+.bio-content {
+  font-weight: bold; 
+  
+}
+
+/* Style the home link */
+.home {
+  /* position: absolute; */
+  /* top: 10px; */
+  /* left: 10px; */
+  /* height: 40px; */
+  /* background-size: cover; */
+}
+
+a.home{
+  text-align: -webkit-match-parent;
+  text-decoration: none;
+  font-size:xxx-large;
+  color:black;
+}
+
+.Concerts {
+  margin-top: 20px;
+}
+
+/* Add more styles as needed */

@@ -1,0 +1,15 @@
+/* error.css */
+
+/* Apply styles to the <body> element */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+/* Apply styles to the <h1> element */
+h1 {
+    color: #ff0000; /* Red text color */
+}
+
+/* Add more styles as needed for your specific design */

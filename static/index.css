@@ -1,0 +1,291 @@
+/* index.css */
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	line-height: 1.6;
+	margin: 0;
+	min-height: 100vh;
+}
+
+.from-content{
+  display: block;
+  margin-top: 0em;
+  margin-block-end: 1em;
+  margin-left: 70;
+}
+
+.groupie {
+  padding: 20px ;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 769px) {
+	.header,
+	.main-nav {
+		display: flex;
+	}
+	.header {
+		flex-direction: column;
+		align-items: center;
+    	.header{
+		width: 80%;
+		margin: 0 auto;
+		max-width: 1150px;
+	}
+	}
+
+}
+
+@media (min-width: 1025px) {
+	.header {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+}
+
+
+
+
+.container {
+    text-align: center;
+    
+  }
+  
+ 
+  
+  #searchResults {
+    margin-top: 20px;
+    margin-left : 83;
+  }
+  
+  .artist {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .artist a {
+    text-decoration: none;
+    color: whitesmoke;
+  }
+  
+  .artist img {
+    max-width: 150px;
+    border-radius: 5px;
+	  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  }
+
+  .artist-name {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px; /* Adjust the max width as needed */
+  }
+  
+
+/* Apply basic styles to the filter containers */
+.FilterCareerStartDate,
+.FilterFirstAlbumDate,
+.FilterLocation,
+.FilterNumberOfMember,
+.SearchButton {
+  display: flex;
+  /* margin-right: 20px; */
+  vertical-align: top;
+  flex-grow: 1;
+  flex-basis: 200;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-evenly;
+}
+
+body {
+  background-color: #F1FAEE;
+  color: whitesmoke;
+}
+
+
+/* Style the header in each filter container */
+.FilterCareerStartDate > div,
+.FilterFirstAlbumDate > div,
+.FilterLocation > div,
+.FilterNumberOfMember > div {
+  font-weight: ;
+  margin-bottom: px;
+  color: #f1faff;
+}
+
+/* Style the range input and its labels */
+input[type="range"] {
+    width: 100%;
+    margin: 5px 0;
+}
+
+label[for^="from"],
+label[for^="to"] {
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+}
+
+/* Style the text inputs */
+input[type="text"] {
+    width: 60px;
+}
+
+/* Style the select element */
+select {
+    width: 100%;
+}
+
+/* Style the checkboxes and their labels */
+.FilterNumberOfMember div {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Style the search button */
+button {
+  background-color: #333;
+	font-weight: bold ;
+	font-size: 20 ;
+  border-color: #000;
+  border-style: solid;
+  border-width: 3px;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius : 6px;
+  width : 1000px;
+  height: 50px;
+}
+
+button:hover {
+    background-color: #ffffff;
+	color: black ;
+	transition: 0.5s ; 
+}
+
+.Filter{ 
+  /* border: 5px solid; */
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.artist-imge {
+  width: 150px;
+}
+
+.artist-image-container {
+  position: relative;
+}
+
+.artist-image-container .artist-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.artist-image-container:hover .artist-name {
+    opacity: 1;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.input-search {
+  padding: 10px;
+	background-color: #333 ;
+	color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 400px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+}
+
+#searchInput {
+  outline: none; /* Removes the default input focus border */
+  width : 500px;
+}
+
+  /* Sidebar Styles */
+  .sidebar {
+    width: 340px; /* Adjust the width as needed */
+    background-color: #333; /* Background color of the sidebar */
+    color: #fff; /* Text color in the sidebar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%; /* Adjust to fill the full height of the page */
+  }
+
+  .sidebar-nav {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar-nav li {
+    padding: 10px;
+  }
+
+  .sidebar-nav li a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* Main Content Styles */
+  .main-content {
+    margin-left: 250px; /* Set to the width of the sidebar */
+    padding: 20px; /* Add space around the main content */
+  }
+
+  /* Add more styles as needed for your main content */
+
+  /* Example: Style the header with a background color */
+  .header {
+    background-color: #333;
+    color: #333;
+    padding: 10px;
+  }
+  .autocomplete-items {
+    position: absolute;
+    transform: translateY(calc(50% + 20px));
+  }
+
+  .autocomplete-item {
+    padding: 10px;
+    background-color: #464141 ;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 210;
+	  cursor:pointer;
+  } 
+
+.autocomplete-item:hover {
+	background-color: white;
+	color: black;
+	transition: 0.5s;
+}
